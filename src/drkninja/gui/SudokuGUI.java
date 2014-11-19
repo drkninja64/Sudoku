@@ -5,17 +5,23 @@
 
 package drkninja.gui;
 
+import drkninja.src.SudoPanel;
+
 /**
  *
  * @author Admin
  */
 public class SudokuGUI extends javax.swing.JFrame {
 
+    public static SudoPanel BlockD[] = new SudoPanel[9];
+    
     /**
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
         initComponents();
+        setVisible(true);
+        init();
     }
 
     /**
@@ -27,36 +33,354 @@ public class SudokuGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        Selection = new javax.swing.ButtonGroup();
+        SudokuPanel = new javax.swing.JPanel();
+        Box_A1 = new javax.swing.JLabel();
+        Box_A2 = new javax.swing.JLabel();
+        Box_A3 = new javax.swing.JLabel();
+        Box_A4 = new javax.swing.JLabel();
+        Box_A5 = new javax.swing.JLabel();
+        Box_A6 = new javax.swing.JLabel();
+        Box_A7 = new javax.swing.JLabel();
+        Box_A8 = new javax.swing.JLabel();
+        Box_A9 = new javax.swing.JLabel();
+        Box_B1 = new javax.swing.JLabel();
+        Box_B2 = new javax.swing.JLabel();
+        Box_B3 = new javax.swing.JLabel();
+        Box_B4 = new javax.swing.JLabel();
+        Box_B5 = new javax.swing.JLabel();
+        Box_B6 = new javax.swing.JLabel();
+        Box_B7 = new javax.swing.JLabel();
+        Box_B8 = new javax.swing.JLabel();
+        Box_B9 = new javax.swing.JLabel();
+        Box_C1 = new javax.swing.JLabel();
+        Box_C2 = new javax.swing.JLabel();
+        Box_C3 = new javax.swing.JLabel();
+        Box_C4 = new javax.swing.JLabel();
+        Box_C5 = new javax.swing.JLabel();
+        Box_C6 = new javax.swing.JLabel();
+        Box_C7 = new javax.swing.JLabel();
+        Box_C8 = new javax.swing.JLabel();
+        Box_C9 = new javax.swing.JLabel();
+        BGI = new javax.swing.JLabel();
+        SelectionPanel = new javax.swing.JPanel();
+        Choice_None = new javax.swing.JRadioButton();
+        Box_1 = new javax.swing.JCheckBox();
+        Choice_1 = new javax.swing.JRadioButton();
+        Box_2 = new javax.swing.JCheckBox();
+        Choice_2 = new javax.swing.JRadioButton();
+        Box_3 = new javax.swing.JCheckBox();
+        Choice_3 = new javax.swing.JRadioButton();
+        Box_4 = new javax.swing.JCheckBox();
+        Choice_4 = new javax.swing.JRadioButton();
+        Box_5 = new javax.swing.JCheckBox();
+        Choice_5 = new javax.swing.JRadioButton();
+        Box_6 = new javax.swing.JCheckBox();
+        Choice_6 = new javax.swing.JRadioButton();
+        Box_7 = new javax.swing.JCheckBox();
+        Choice_7 = new javax.swing.JRadioButton();
+        Box_8 = new javax.swing.JCheckBox();
+        Choice_8 = new javax.swing.JRadioButton();
+        Box_9 = new javax.swing.JCheckBox();
+        Choice_9 = new javax.swing.JRadioButton();
+        Box_None = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sudoku");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 500));
+        SudokuPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+        SudokuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+        Box_A1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A1.setText("A");
+        Box_A1.setToolTipText("");
+        SudokuPanel.add(Box_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 50, 50));
+
+        Box_A2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A2.setText("A");
+        Box_A2.setToolTipText("");
+        SudokuPanel.add(Box_A2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 4, 50, 50));
+
+        Box_A3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A3.setText("A");
+        Box_A3.setToolTipText("");
+        SudokuPanel.add(Box_A3, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 4, 50, 50));
+
+        Box_A4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A4.setText("A");
+        Box_A4.setToolTipText("");
+        SudokuPanel.add(Box_A4, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 56, 50, 50));
+
+        Box_A5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A5.setText("A");
+        Box_A5.setToolTipText("");
+        SudokuPanel.add(Box_A5, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 58, 50, 50));
+
+        Box_A6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A6.setText("A");
+        Box_A6.setToolTipText("");
+        SudokuPanel.add(Box_A6, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 58, 50, 50));
+
+        Box_A7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A7.setText("A");
+        Box_A7.setToolTipText("");
+        SudokuPanel.add(Box_A7, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 112, 50, 50));
+
+        Box_A8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A8.setText("A");
+        Box_A8.setToolTipText("");
+        SudokuPanel.add(Box_A8, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 113, 50, 50));
+
+        Box_A9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_A9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_A9.setText("A");
+        Box_A9.setToolTipText("");
+        SudokuPanel.add(Box_A9, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 113, 50, 50));
+
+        Box_B1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B1.setText("B");
+        Box_B1.setToolTipText("");
+        SudokuPanel.add(Box_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 4, 50, 50));
+
+        Box_B2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B2.setText("B");
+        Box_B2.setToolTipText("");
+        SudokuPanel.add(Box_B2, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 4, 50, 50));
+
+        Box_B3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B3.setText("B");
+        Box_B3.setToolTipText("");
+        SudokuPanel.add(Box_B3, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 4, 50, 50));
+
+        Box_B4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B4.setText("B");
+        Box_B4.setToolTipText("");
+        SudokuPanel.add(Box_B4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 56, 50, 50));
+
+        Box_B5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B5.setText("B");
+        Box_B5.setToolTipText("");
+        SudokuPanel.add(Box_B5, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 58, 50, 50));
+
+        Box_B6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B6.setText("B");
+        Box_B6.setToolTipText("");
+        SudokuPanel.add(Box_B6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 58, 50, 50));
+
+        Box_B7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B7.setText("B");
+        Box_B7.setToolTipText("");
+        SudokuPanel.add(Box_B7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 112, 50, 50));
+
+        Box_B8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B8.setText("B");
+        Box_B8.setToolTipText("");
+        SudokuPanel.add(Box_B8, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 113, 50, 50));
+
+        Box_B9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_B9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_B9.setText("B");
+        Box_B9.setToolTipText("");
+        SudokuPanel.add(Box_B9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 113, 50, 50));
+
+        Box_C1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C1.setText("C");
+        Box_C1.setToolTipText("");
+        SudokuPanel.add(Box_C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 4, 50, 50));
+
+        Box_C2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C2.setText("C");
+        Box_C2.setToolTipText("");
+        SudokuPanel.add(Box_C2, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 4, 50, 50));
+
+        Box_C3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C3.setText("C");
+        Box_C3.setToolTipText("");
+        SudokuPanel.add(Box_C3, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 4, 50, 50));
+
+        Box_C4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C4.setText("C");
+        Box_C4.setToolTipText("");
+        SudokuPanel.add(Box_C4, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 58, 50, 50));
+
+        Box_C5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C5.setText("C");
+        Box_C5.setToolTipText("");
+        SudokuPanel.add(Box_C5, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 58, 50, 50));
+
+        Box_C6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C6.setText("C");
+        Box_C6.setToolTipText("");
+        SudokuPanel.add(Box_C6, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 58, 50, 50));
+
+        Box_C7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C7.setText("C");
+        Box_C7.setToolTipText("");
+        SudokuPanel.add(Box_C7, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 113, 50, 50));
+
+        Box_C8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C8.setText("C");
+        Box_C8.setToolTipText("");
+        SudokuPanel.add(Box_C8, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 113, 50, 50));
+
+        Box_C9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
+        Box_C9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Box_C9.setText("C");
+        Box_C9.setToolTipText("");
+        SudokuPanel.add(Box_C9, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 113, 50, 50));
+
+        BGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drkninja/res/Sudoku.png"))); // NOI18N
+        SudokuPanel.add(BGI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        SelectionPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        Selection.add(Choice_None);
+        Choice_None.setText("None");
+
+        Selection.add(Choice_1);
+        Choice_1.setText("1");
+
+        Selection.add(Choice_2);
+        Choice_2.setText("2");
+
+        Selection.add(Choice_3);
+        Choice_3.setText("3");
+
+        Selection.add(Choice_4);
+        Choice_4.setText("4");
+
+        Selection.add(Choice_5);
+        Choice_5.setText("5");
+
+        Selection.add(Choice_6);
+        Choice_6.setText("6");
+
+        Selection.add(Choice_7);
+        Choice_7.setText("7");
+
+        Selection.add(Choice_8);
+        Choice_8.setText("8");
+
+        Selection.add(Choice_9);
+        Choice_9.setText("9");
+
+        javax.swing.GroupLayout SelectionPanelLayout = new javax.swing.GroupLayout(SelectionPanel);
+        SelectionPanel.setLayout(SelectionPanelLayout);
+        SelectionPanelLayout.setHorizontalGroup(
+            SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectionPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_1))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_2))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_3))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_4))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_5))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_6)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_6))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_7)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_7))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SelectionPanelLayout.createSequentialGroup()
+                            .addComponent(Box_8)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(Choice_8)))
+                    .addGroup(SelectionPanelLayout.createSequentialGroup()
+                        .addComponent(Box_9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Choice_9))
+                    .addGroup(SelectionPanelLayout.createSequentialGroup()
+                        .addComponent(Box_None)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Choice_None))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+        SelectionPanelLayout.setVerticalGroup(
+            SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SelectionPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_None)
+                    .addComponent(Box_None))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_1)
+                    .addComponent(Box_1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_2)
+                    .addComponent(Box_2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_3)
+                    .addComponent(Box_3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_4)
+                    .addComponent(Box_4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_5)
+                    .addComponent(Box_5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_6)
+                    .addComponent(Box_6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_7)
+                    .addComponent(Box_7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_8)
+                    .addComponent(Box_8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SelectionPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Choice_9)
+                    .addComponent(Box_9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -65,9 +389,9 @@ public class SudokuGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,8 +399,8 @@ public class SudokuGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -84,11 +408,62 @@ public class SudokuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void init(){
+        BlockD = SudoPanel.setBoxGroup(4, 170, "D");
+        SudoPanel.addPanels(BlockD, SudokuPanel);
         
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel BGI;
+    private javax.swing.JCheckBox Box_1;
+    private javax.swing.JCheckBox Box_2;
+    private javax.swing.JCheckBox Box_3;
+    private javax.swing.JCheckBox Box_4;
+    private javax.swing.JCheckBox Box_5;
+    private javax.swing.JCheckBox Box_6;
+    private javax.swing.JCheckBox Box_7;
+    private javax.swing.JCheckBox Box_8;
+    private javax.swing.JCheckBox Box_9;
+    private javax.swing.JLabel Box_A1;
+    private javax.swing.JLabel Box_A2;
+    private javax.swing.JLabel Box_A3;
+    private javax.swing.JLabel Box_A4;
+    private javax.swing.JLabel Box_A5;
+    private javax.swing.JLabel Box_A6;
+    private javax.swing.JLabel Box_A7;
+    private javax.swing.JLabel Box_A8;
+    private javax.swing.JLabel Box_A9;
+    private javax.swing.JLabel Box_B1;
+    private javax.swing.JLabel Box_B2;
+    private javax.swing.JLabel Box_B3;
+    private javax.swing.JLabel Box_B4;
+    private javax.swing.JLabel Box_B5;
+    private javax.swing.JLabel Box_B6;
+    private javax.swing.JLabel Box_B7;
+    private javax.swing.JLabel Box_B8;
+    private javax.swing.JLabel Box_B9;
+    private javax.swing.JLabel Box_C1;
+    private javax.swing.JLabel Box_C2;
+    private javax.swing.JLabel Box_C3;
+    private javax.swing.JLabel Box_C4;
+    private javax.swing.JLabel Box_C5;
+    private javax.swing.JLabel Box_C6;
+    private javax.swing.JLabel Box_C7;
+    private javax.swing.JLabel Box_C8;
+    private javax.swing.JLabel Box_C9;
+    private javax.swing.JCheckBox Box_None;
+    private javax.swing.JRadioButton Choice_1;
+    private javax.swing.JRadioButton Choice_2;
+    private javax.swing.JRadioButton Choice_3;
+    private javax.swing.JRadioButton Choice_4;
+    private javax.swing.JRadioButton Choice_5;
+    private javax.swing.JRadioButton Choice_6;
+    private javax.swing.JRadioButton Choice_7;
+    private javax.swing.JRadioButton Choice_8;
+    private javax.swing.JRadioButton Choice_9;
+    private javax.swing.JRadioButton Choice_None;
+    private javax.swing.ButtonGroup Selection;
+    private javax.swing.JPanel SelectionPanel;
+    private static javax.swing.JPanel SudokuPanel;
     // End of variables declaration//GEN-END:variables
 }
