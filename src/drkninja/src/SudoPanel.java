@@ -7,6 +7,7 @@ package drkninja.src;
 
 
 
+import drkninja.gui.SudokuGUI;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -67,8 +68,9 @@ public class SudoPanel extends JLabel {
         SudoPanel grp[] = new SudoPanel[9];
         while (i < 9){
             grp[i] = new SudoPanel(text, x, y);
+            grp[i].reset();
             x += 56;
-            if(i == 3 || i == 6){
+            if(i == 2 || i == 5){
                 x = tx;
                 y += 56;
             }
@@ -87,14 +89,14 @@ public class SudoPanel extends JLabel {
         return setBoxGroup(x, y, "");
     }
     
-    public static void addPanels(SudoPanel grp[], JPanel board){
+    public static void addPanels(SudoPanel grp[]){
         for(int i = 0; i<9; i++){
             try{
-                board.add(grp[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(grp[i].xpos, grp[i].ypos, 50, 50));
+                SudokuGUI.SudokuPanel.add(grp[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(grp[i].xpos, grp[i].ypos, 50, 50));
                 grp[i].reset();
             }
             catch(Exception e){
-                JOptionPane.showMessageDialog(board, "Error when adding panel at " + i);
+                JOptionPane.showMessageDialog(null, "Error when adding panel at " + i);
                 System.exit(1);
             }
         }

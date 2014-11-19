@@ -6,15 +6,17 @@
 package drkninja.gui;
 
 import drkninja.src.SudoPanel;
-
+import static drkninja.util.Reference.BGI_PATH;
+import static drkninja.util.Reference.INITIAL_TEXT;
 /**
  *
  * @author Admin
  */
 public class SudokuGUI extends javax.swing.JFrame {
 
-    public static SudoPanel BlockD[] = new SudoPanel[9];
-    
+    private static javax.swing.JLabel BGI;
+    public static SudoPanel Block[][] = new SudoPanel[9][];
+
     /**
      * Creates new form SudokuGUI
      */
@@ -35,34 +37,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         Selection = new javax.swing.ButtonGroup();
         SudokuPanel = new javax.swing.JPanel();
-        Box_A1 = new javax.swing.JLabel();
-        Box_A2 = new javax.swing.JLabel();
-        Box_A3 = new javax.swing.JLabel();
-        Box_A4 = new javax.swing.JLabel();
-        Box_A5 = new javax.swing.JLabel();
-        Box_A6 = new javax.swing.JLabel();
-        Box_A7 = new javax.swing.JLabel();
-        Box_A8 = new javax.swing.JLabel();
-        Box_A9 = new javax.swing.JLabel();
-        Box_B1 = new javax.swing.JLabel();
-        Box_B2 = new javax.swing.JLabel();
-        Box_B3 = new javax.swing.JLabel();
-        Box_B4 = new javax.swing.JLabel();
-        Box_B5 = new javax.swing.JLabel();
-        Box_B6 = new javax.swing.JLabel();
-        Box_B7 = new javax.swing.JLabel();
-        Box_B8 = new javax.swing.JLabel();
-        Box_B9 = new javax.swing.JLabel();
-        Box_C1 = new javax.swing.JLabel();
-        Box_C2 = new javax.swing.JLabel();
-        Box_C3 = new javax.swing.JLabel();
-        Box_C4 = new javax.swing.JLabel();
-        Box_C5 = new javax.swing.JLabel();
-        Box_C6 = new javax.swing.JLabel();
-        Box_C7 = new javax.swing.JLabel();
-        Box_C8 = new javax.swing.JLabel();
-        Box_C9 = new javax.swing.JLabel();
-        BGI = new javax.swing.JLabel();
+        BGI_temp = new javax.swing.JLabel();
         SelectionPanel = new javax.swing.JPanel();
         Choice_None = new javax.swing.JRadioButton();
         Box_1 = new javax.swing.JCheckBox();
@@ -91,170 +66,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         SudokuPanel.setPreferredSize(new java.awt.Dimension(500, 500));
         SudokuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Box_A1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A1.setText("A");
-        Box_A1.setToolTipText("");
-        SudokuPanel.add(Box_A1, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 4, 50, 50));
-
-        Box_A2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A2.setText("A");
-        Box_A2.setToolTipText("");
-        SudokuPanel.add(Box_A2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 4, 50, 50));
-
-        Box_A3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A3.setText("A");
-        Box_A3.setToolTipText("");
-        SudokuPanel.add(Box_A3, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 4, 50, 50));
-
-        Box_A4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A4.setText("A");
-        Box_A4.setToolTipText("");
-        SudokuPanel.add(Box_A4, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 56, 50, 50));
-
-        Box_A5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A5.setText("A");
-        Box_A5.setToolTipText("");
-        SudokuPanel.add(Box_A5, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 58, 50, 50));
-
-        Box_A6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A6.setText("A");
-        Box_A6.setToolTipText("");
-        SudokuPanel.add(Box_A6, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 58, 50, 50));
-
-        Box_A7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A7.setText("A");
-        Box_A7.setToolTipText("");
-        SudokuPanel.add(Box_A7, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 112, 50, 50));
-
-        Box_A8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A8.setText("A");
-        Box_A8.setToolTipText("");
-        SudokuPanel.add(Box_A8, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 113, 50, 50));
-
-        Box_A9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_A9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_A9.setText("A");
-        Box_A9.setToolTipText("");
-        SudokuPanel.add(Box_A9, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 113, 50, 50));
-
-        Box_B1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B1.setText("B");
-        Box_B1.setToolTipText("");
-        SudokuPanel.add(Box_B1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 4, 50, 50));
-
-        Box_B2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B2.setText("B");
-        Box_B2.setToolTipText("");
-        SudokuPanel.add(Box_B2, new org.netbeans.lib.awtextra.AbsoluteConstraints(226, 4, 50, 50));
-
-        Box_B3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B3.setText("B");
-        Box_B3.setToolTipText("");
-        SudokuPanel.add(Box_B3, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 4, 50, 50));
-
-        Box_B4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B4.setText("B");
-        Box_B4.setToolTipText("");
-        SudokuPanel.add(Box_B4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 56, 50, 50));
-
-        Box_B5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B5.setText("B");
-        Box_B5.setToolTipText("");
-        SudokuPanel.add(Box_B5, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 58, 50, 50));
-
-        Box_B6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B6.setText("B");
-        Box_B6.setToolTipText("");
-        SudokuPanel.add(Box_B6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 58, 50, 50));
-
-        Box_B7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B7.setText("B");
-        Box_B7.setToolTipText("");
-        SudokuPanel.add(Box_B7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 112, 50, 50));
-
-        Box_B8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B8.setText("B");
-        Box_B8.setToolTipText("");
-        SudokuPanel.add(Box_B8, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 113, 50, 50));
-
-        Box_B9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_B9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_B9.setText("B");
-        Box_B9.setToolTipText("");
-        SudokuPanel.add(Box_B9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 113, 50, 50));
-
-        Box_C1.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C1.setText("C");
-        Box_C1.setToolTipText("");
-        SudokuPanel.add(Box_C1, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 4, 50, 50));
-
-        Box_C2.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C2.setText("C");
-        Box_C2.setToolTipText("");
-        SudokuPanel.add(Box_C2, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 4, 50, 50));
-
-        Box_C3.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C3.setText("C");
-        Box_C3.setToolTipText("");
-        SudokuPanel.add(Box_C3, new org.netbeans.lib.awtextra.AbsoluteConstraints(448, 4, 50, 50));
-
-        Box_C4.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C4.setText("C");
-        Box_C4.setToolTipText("");
-        SudokuPanel.add(Box_C4, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 58, 50, 50));
-
-        Box_C5.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C5.setText("C");
-        Box_C5.setToolTipText("");
-        SudokuPanel.add(Box_C5, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 58, 50, 50));
-
-        Box_C6.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C6.setText("C");
-        Box_C6.setToolTipText("");
-        SudokuPanel.add(Box_C6, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 58, 50, 50));
-
-        Box_C7.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C7.setText("C");
-        Box_C7.setToolTipText("");
-        SudokuPanel.add(Box_C7, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 113, 50, 50));
-
-        Box_C8.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C8.setText("C");
-        Box_C8.setToolTipText("");
-        SudokuPanel.add(Box_C8, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 113, 50, 50));
-
-        Box_C9.setFont(new java.awt.Font("Curlz MT", 0, 36)); // NOI18N
-        Box_C9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Box_C9.setText("C");
-        Box_C9.setToolTipText("");
-        SudokuPanel.add(Box_C9, new org.netbeans.lib.awtextra.AbsoluteConstraints(446, 113, 50, 50));
-
-        BGI.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drkninja/res/Sudoku.png"))); // NOI18N
-        SudokuPanel.add(BGI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        BGI_temp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drkninja/res/Sudoku.png"))); // NOI18N
+        SudokuPanel.add(BGI_temp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         SelectionPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -407,14 +220,33 @@ public class SudokuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void init(){
-        BlockD = SudoPanel.setBoxGroup(4, 170, "D");
-        SudoPanel.addPanels(BlockD, SudokuPanel);
-        
+    private void init(){
+        for (int i=0; i<9;i++) Block[i] = new SudoPanel[9];
+        Block[0] = SudoPanel.setBoxGroup(4, 4, INITIAL_TEXT);
+        Block[1] = SudoPanel.setBoxGroup(170, 4, INITIAL_TEXT);
+        Block[2] = SudoPanel.setBoxGroup(336, 4, INITIAL_TEXT);
+        Block[3] = SudoPanel.setBoxGroup(4, 170, INITIAL_TEXT);
+        Block[4] = SudoPanel.setBoxGroup(170, 170, INITIAL_TEXT);
+        Block[5] = SudoPanel.setBoxGroup(336, 170, INITIAL_TEXT);
+        Block[6] = SudoPanel.setBoxGroup(4, 336, INITIAL_TEXT);
+        Block[7] = SudoPanel.setBoxGroup(170, 336, INITIAL_TEXT);
+        Block[8] = SudoPanel.setBoxGroup(336, 336, INITIAL_TEXT);
+        for (int i=0; i<9;i++) SudoPanel.addPanels(Block[i]);  
+        setBGI();
+    }
+    
+    /**
+     * Sets the BGI Sudoku Board
+     */
+    private void setBGI(){
+        BGI_temp.setVisible(false);
+        BGI = new javax.swing.JLabel();
+        BGI.setIcon(new javax.swing.ImageIcon(getClass().getResource(BGI_PATH))); // NOI18N
+        SudokuPanel.add(BGI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BGI;
+    private static javax.swing.JLabel BGI_temp;
     private javax.swing.JCheckBox Box_1;
     private javax.swing.JCheckBox Box_2;
     private javax.swing.JCheckBox Box_3;
@@ -424,33 +256,6 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox Box_7;
     private javax.swing.JCheckBox Box_8;
     private javax.swing.JCheckBox Box_9;
-    private javax.swing.JLabel Box_A1;
-    private javax.swing.JLabel Box_A2;
-    private javax.swing.JLabel Box_A3;
-    private javax.swing.JLabel Box_A4;
-    private javax.swing.JLabel Box_A5;
-    private javax.swing.JLabel Box_A6;
-    private javax.swing.JLabel Box_A7;
-    private javax.swing.JLabel Box_A8;
-    private javax.swing.JLabel Box_A9;
-    private javax.swing.JLabel Box_B1;
-    private javax.swing.JLabel Box_B2;
-    private javax.swing.JLabel Box_B3;
-    private javax.swing.JLabel Box_B4;
-    private javax.swing.JLabel Box_B5;
-    private javax.swing.JLabel Box_B6;
-    private javax.swing.JLabel Box_B7;
-    private javax.swing.JLabel Box_B8;
-    private javax.swing.JLabel Box_B9;
-    private javax.swing.JLabel Box_C1;
-    private javax.swing.JLabel Box_C2;
-    private javax.swing.JLabel Box_C3;
-    private javax.swing.JLabel Box_C4;
-    private javax.swing.JLabel Box_C5;
-    private javax.swing.JLabel Box_C6;
-    private javax.swing.JLabel Box_C7;
-    private javax.swing.JLabel Box_C8;
-    private javax.swing.JLabel Box_C9;
     private javax.swing.JCheckBox Box_None;
     private javax.swing.JRadioButton Choice_1;
     private javax.swing.JRadioButton Choice_2;
@@ -464,6 +269,6 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton Choice_None;
     private javax.swing.ButtonGroup Selection;
     private javax.swing.JPanel SelectionPanel;
-    private static javax.swing.JPanel SudokuPanel;
+    public static javax.swing.JPanel SudokuPanel;
     // End of variables declaration//GEN-END:variables
 }
