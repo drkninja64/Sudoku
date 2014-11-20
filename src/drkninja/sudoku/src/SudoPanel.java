@@ -1,4 +1,4 @@
-package drkninja.src;
+package drkninja.sudoku.src;
 
 /*
  * Sudoku Game
@@ -7,7 +7,9 @@ package drkninja.src;
 
 
 
-import drkninja.gui.SudokuGUI;
+import drkninja.sudoku.gui.SudokuGUI;
+import static drkninja.sudoku.util.Reference.NORMAL_FONT;
+import static drkninja.sudoku.util.Reference.SELECTED_FONT;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -50,8 +52,17 @@ public class SudoPanel extends JLabel {
     public void reset() {
         setText(Text);
         setVisible(true); 
-        setFont(new java.awt.Font("Curlz MT", 0, 36));
+//        setFont(new java.awt.Font("Curlz MT", 0, 36));
+        setFont(NORMAL_FONT);
         setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    }
+    
+    public void select(){
+        setFont(SELECTED_FONT);
+    }
+    
+    public void deselect(){
+        setFont(NORMAL_FONT);
     }
     
     /**

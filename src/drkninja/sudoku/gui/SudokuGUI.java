@@ -3,14 +3,16 @@
  * Sajag made this!!
  */
 
-package drkninja.gui;
+package drkninja.sudoku.gui;
 
-import drkninja.src.SudoPanel;
-import static drkninja.util.Reference.BGI_PATH;
-import static drkninja.util.Reference.INITIAL_TEXT;
+import drkninja.sudoku.src.SudoPanel;
+import static drkninja.sudoku.util.Reference.BGI_PATH;
+import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -20,6 +22,9 @@ public class SudokuGUI extends javax.swing.JFrame {
 
     private static javax.swing.JLabel BGI;
     public static SudoPanel Block[][] = new SudoPanel[9][];
+    public static SudoPanel SELECTED_PANEL;
+    public static JCheckBox[] HintBox = new JCheckBox[10];
+    public static JRadioButton[] SelectedNumber = new JRadioButton[10];
 
     /**
      * Creates new form SudokuGUI
@@ -222,7 +227,22 @@ public class SudokuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void init(){
-        for (int i=0; i<9;i++) Block[i] = new SudoPanel[9];
+        setupHintBox();
+        setupBlocks();
+        setupButtons();
+        setBGI();
+        SELECTED_PANEL = Block[0][0];
+        SELECTED_PANEL.select();
+    }
+    
+    /**
+     * Setup Blocks of panels
+     */
+    private void setupBlocks(){
+        
+        for (int i=0; i<9;i++) 
+            Block[i] = new SudoPanel[9];
+        
         Block[0] = SudoPanel.setBoxGroup(4, 4, INITIAL_TEXT);
         Block[1] = SudoPanel.setBoxGroup(170, 4, INITIAL_TEXT);
         Block[2] = SudoPanel.setBoxGroup(336, 4, INITIAL_TEXT);
@@ -232,62 +252,95 @@ public class SudokuGUI extends javax.swing.JFrame {
         Block[6] = SudoPanel.setBoxGroup(4, 336, INITIAL_TEXT);
         Block[7] = SudoPanel.setBoxGroup(170, 336, INITIAL_TEXT);
         Block[8] = SudoPanel.setBoxGroup(336, 336, INITIAL_TEXT);
-        SudoPanel.addPanels();  
-        setBGI();
+        
+        SudoPanel.addPanels();
+    }
+    
+    /**
+     * Setup CheckBoxes
+     */
+    private void setupHintBox(){
+        SelectedNumber[0] = Choice_None;
+        SelectedNumber[1] = Choice_1;
+        SelectedNumber[2] = Choice_2;
+        SelectedNumber[3] = Choice_3;
+        SelectedNumber[4] = Choice_4;
+        SelectedNumber[5] = Choice_5;
+        SelectedNumber[6] = Choice_6;
+        SelectedNumber[7] = Choice_7;
+        SelectedNumber[8] = Choice_8;
+        SelectedNumber[9] = Choice_9;
+    }
+    
+    /**
+     * Setup RadioButtons
+     */
+    private void setupButtons(){
+        HintBox[0] = Box_None;
+        HintBox[1] = Box_1;
+        HintBox[2] = Box_2;
+        HintBox[3] = Box_3;
+        HintBox[4] = Box_4;
+        HintBox[5] = Box_5;
+        HintBox[6] = Box_6;
+        HintBox[7] = Box_7;
+        HintBox[8] = Box_8;
+        HintBox[9] = Box_9;
     }
     
     /**
      * Sets the BGI Sudoku Board
      */
     private void setBGI(){
-        //BGI_temp = new javax.swing.JLabel();
         BGI = new javax.swing.JLabel();
         BGI.setIcon(new javax.swing.ImageIcon(getClass().getResource(BGI_PATH))); // NOI18N
         SudokuPanel.add(BGI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-        BGI.setVisible(true);
     }
     
-    public void clickPanel(){
+    /**
+     * Makes SudoPanels clickable!
+     */
+    private void clickPanel(){
         int i, j;
         for(i = 0; i<9; i++){
             for(j = 0; j<9; j++){
                 Block[i][j].addMouseListener(new MouseAdapter() {
+                    @Override
                     public void mousePressed(MouseEvent me) {
-                        SudoPanel panel = new SudoPanel();
-                        try{
-                            panel =(SudoPanel) me.getSource();
-                        }
-                        catch(Exception e){
-                            JOptionPane.showMessageDialog(null, "Clicked other thing " + me.getSource());
-                        }
-                        panel.setText("0");
+                        SELECTED_PANEL.deselect();
+                        SELECTED_PANEL =(SudoPanel) me.getSource();
+                        SELECTED_PANEL.select();
                     }
                 });
             }
         }
     }
     
+    public static void resetHint(){
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox Box_1;
-    private javax.swing.JCheckBox Box_2;
-    private javax.swing.JCheckBox Box_3;
-    private javax.swing.JCheckBox Box_4;
-    private javax.swing.JCheckBox Box_5;
-    private javax.swing.JCheckBox Box_6;
-    private javax.swing.JCheckBox Box_7;
-    private javax.swing.JCheckBox Box_8;
-    private javax.swing.JCheckBox Box_9;
-    private javax.swing.JCheckBox Box_None;
-    private javax.swing.JRadioButton Choice_1;
-    private javax.swing.JRadioButton Choice_2;
-    private javax.swing.JRadioButton Choice_3;
-    private javax.swing.JRadioButton Choice_4;
-    private javax.swing.JRadioButton Choice_5;
-    private javax.swing.JRadioButton Choice_6;
-    private javax.swing.JRadioButton Choice_7;
-    private javax.swing.JRadioButton Choice_8;
-    private javax.swing.JRadioButton Choice_9;
-    private javax.swing.JRadioButton Choice_None;
+    private static javax.swing.JCheckBox Box_1;
+    private static javax.swing.JCheckBox Box_2;
+    private static javax.swing.JCheckBox Box_3;
+    private static javax.swing.JCheckBox Box_4;
+    private static javax.swing.JCheckBox Box_5;
+    private static javax.swing.JCheckBox Box_6;
+    private static javax.swing.JCheckBox Box_7;
+    private static javax.swing.JCheckBox Box_8;
+    private static javax.swing.JCheckBox Box_9;
+    private static javax.swing.JCheckBox Box_None;
+    private static javax.swing.JRadioButton Choice_1;
+    private static javax.swing.JRadioButton Choice_2;
+    private static javax.swing.JRadioButton Choice_3;
+    private static javax.swing.JRadioButton Choice_4;
+    private static javax.swing.JRadioButton Choice_5;
+    private static javax.swing.JRadioButton Choice_6;
+    private static javax.swing.JRadioButton Choice_7;
+    private static javax.swing.JRadioButton Choice_8;
+    private static javax.swing.JRadioButton Choice_9;
+    private static javax.swing.JRadioButton Choice_None;
     private javax.swing.ButtonGroup Selection;
     private javax.swing.JPanel SelectionPanel;
     public static javax.swing.JPanel SudokuPanel;

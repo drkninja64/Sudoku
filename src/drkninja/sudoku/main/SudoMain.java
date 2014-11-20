@@ -3,16 +3,18 @@
  * Sajag made this!!
  */
 
-package drkninja.main;
+package drkninja.sudoku.main;
 
-import drkninja.gui.SudokuGUI;
-import drkninja.src.SudoPanel;
+import drkninja.sudoku.gui.SudokuGUI;
 /**
  *
  * @author Admin
  */
 public class SudoMain {
+    public static javax.swing.JFrame MainGUI;
+    
     public static void main(String args[]){
+        //MainGUI = 
         new SudokuGUI();
     }
 }
