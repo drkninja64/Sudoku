@@ -6,6 +6,7 @@
 package drkninja.main;
 
 import drkninja.gui.SudokuGUI;
+import drkninja.src.SudoPanel;
 /**
  *
  * @author Admin

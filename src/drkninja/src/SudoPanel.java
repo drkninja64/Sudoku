@@ -10,7 +10,6 @@ package drkninja.src;
 import drkninja.gui.SudokuGUI;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -30,10 +29,9 @@ public class SudoPanel extends JLabel {
     public int STATUS;
     public int xpos = 0;
     public int ypos = 0;
-    public String Text = "";
+    public String Text = " ";
     
-    public SudoPanel(){
-    }
+    public SudoPanel(){}
     
     public SudoPanel(String text, int x, int y){
         Text = text;
@@ -89,16 +87,22 @@ public class SudoPanel extends JLabel {
         return setBoxGroup(x, y, "");
     }
     
-    public static void addPanels(SudoPanel grp[]){
-        for(int i = 0; i<9; i++){
-            try{
-                SudokuGUI.SudokuPanel.add(grp[i], new org.netbeans.lib.awtextra.AbsoluteConstraints(grp[i].xpos, grp[i].ypos, 50, 50));
-                grp[i].reset();
-            }
-            catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error when adding panel at " + i);
-                System.exit(1);
+    public static void addPanels(){
+        int i, j;
+        for(i = 0; i<9; i++){
+            for(j = 0; j<9; j++){
+                try{
+                    SudokuGUI.SudokuPanel.add(SudokuGUI.Block[i][j], new org.netbeans.lib.awtextra.AbsoluteConstraints(SudokuGUI.Block[i][j].xpos, SudokuGUI.Block[i][j].ypos, 50, 50));
+                    SudokuGUI.Block[i][j].reset();
+                }
+                catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error when adding panel at " + i);
+                    System.exit(1);
+                }
             }
         }
     }
+    
+    
+    
 }

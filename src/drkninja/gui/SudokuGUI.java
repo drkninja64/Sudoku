@@ -8,6 +8,10 @@ package drkninja.gui;
 import drkninja.src.SudoPanel;
 import static drkninja.util.Reference.BGI_PATH;
 import static drkninja.util.Reference.INITIAL_TEXT;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -21,9 +25,10 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
-        initComponents();
+        initComponents();    
         setVisible(true);
         init();
+        clickPanel();
     }
 
     /**
@@ -37,7 +42,6 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         Selection = new javax.swing.ButtonGroup();
         SudokuPanel = new javax.swing.JPanel();
-        BGI_temp = new javax.swing.JLabel();
         SelectionPanel = new javax.swing.JPanel();
         Choice_None = new javax.swing.JRadioButton();
         Box_1 = new javax.swing.JCheckBox();
@@ -65,9 +69,6 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         SudokuPanel.setPreferredSize(new java.awt.Dimension(500, 500));
         SudokuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        BGI_temp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drkninja/res/Sudoku.png"))); // NOI18N
-        SudokuPanel.add(BGI_temp, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         SelectionPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -231,7 +232,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         Block[6] = SudoPanel.setBoxGroup(4, 336, INITIAL_TEXT);
         Block[7] = SudoPanel.setBoxGroup(170, 336, INITIAL_TEXT);
         Block[8] = SudoPanel.setBoxGroup(336, 336, INITIAL_TEXT);
-        for (int i=0; i<9;i++) SudoPanel.addPanels(Block[i]);  
+        SudoPanel.addPanels();  
         setBGI();
     }
     
@@ -239,14 +240,34 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Sets the BGI Sudoku Board
      */
     private void setBGI(){
-        BGI_temp.setVisible(false);
+        //BGI_temp = new javax.swing.JLabel();
         BGI = new javax.swing.JLabel();
         BGI.setIcon(new javax.swing.ImageIcon(getClass().getResource(BGI_PATH))); // NOI18N
         SudokuPanel.add(BGI, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        BGI.setVisible(true);
+    }
+    
+    public void clickPanel(){
+        int i, j;
+        for(i = 0; i<9; i++){
+            for(j = 0; j<9; j++){
+                Block[i][j].addMouseListener(new MouseAdapter() {
+                    public void mousePressed(MouseEvent me) {
+                        SudoPanel panel = new SudoPanel();
+                        try{
+                            panel =(SudoPanel) me.getSource();
+                        }
+                        catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "Clicked other thing " + me.getSource());
+                        }
+                        panel.setText("0");
+                    }
+                });
+            }
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JLabel BGI_temp;
     private javax.swing.JCheckBox Box_1;
     private javax.swing.JCheckBox Box_2;
     private javax.swing.JCheckBox Box_3;
