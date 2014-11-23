@@ -33,7 +33,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         initComponents();    
         setVisible(true);
         init();
-        clickPanel();
+        clickListener();
     }
 
     /**
@@ -106,6 +106,12 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         Selection.add(Choice_9);
         Choice_9.setText("9");
+
+        Box_None.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Box_NoneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout SelectionPanelLayout = new javax.swing.GroupLayout(SelectionPanel);
         SelectionPanel.setLayout(SelectionPanelLayout);
@@ -226,13 +232,22 @@ public class SudokuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Box_NoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_NoneActionPerformed
+        if(Box_None.isSelected()){
+            resetHint();
+        }
+    }//GEN-LAST:event_Box_NoneActionPerformed
+
     private void init(){
+        setLocationRelativeTo(null);
         setupHintBox();
         setupBlocks();
         setupButtons();
         setBGI();
-        SELECTED_PANEL = Block[0][0];
-        SELECTED_PANEL.select();
+        resetHint();
+        Choice_None.setSelected(true);
+        hintListener();
+        alphaTest();
     }
     
     /**
@@ -300,24 +315,47 @@ public class SudokuGUI extends javax.swing.JFrame {
     /**
      * Makes SudoPanels clickable!
      */
-    private void clickPanel(){
+    private void clickListener(){
         int i, j;
         for(i = 0; i<9; i++){
             for(j = 0; j<9; j++){
                 Block[i][j].addMouseListener(new MouseAdapter() {
                     @Override
                     public void mousePressed(MouseEvent me) {
-                        SELECTED_PANEL.deselect();
-                        SELECTED_PANEL =(SudoPanel) me.getSource();
-                        SELECTED_PANEL.select();
+                        clickedPanel((SudoPanel) me.getSource());
                     }
                 });
             }
         }
     }
     
+    public void clickedPanel(SudoPanel sp){
+        if(sp.isFixed()) return;
+        SELECTED_PANEL.deselect();
+        SELECTED_PANEL = sp;
+        SELECTED_PANEL.select();
+    }
+            
+            
+    /**
+     * Resets hint boxes to no hints
+     */
     public static void resetHint(){
-        
+        resetHint(0);
+    }
+    
+    /**
+     * Resets hint boxes
+     * @param i '0' means no hints
+     */
+    public static void resetHint(int i){
+        if(i == 0){
+            HintBox[0].setSelected(true);
+            for(int j=1; j<10; j++) HintBox[j].setSelected(false);
+        }
+        else{
+            HintBox[0].setSelected(false);
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -345,4 +383,20 @@ public class SudokuGUI extends javax.swing.JFrame {
     private javax.swing.JPanel SelectionPanel;
     public static javax.swing.JPanel SudokuPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void hintListener() {
+        for(int i=1; i<10; i++){
+            HintBox[i].addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    resetHint(1);
+                }
+            });
+        }
+    }
+
+    private void alphaTest() {
+        SELECTED_PANEL = Block[0][0];
+        SELECTED_PANEL.select();
+        Block[3][5].fix();
+    }
 }

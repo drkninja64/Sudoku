@@ -10,6 +10,7 @@ package drkninja.sudoku.src;
 import drkninja.sudoku.gui.SudokuGUI;
 import static drkninja.sudoku.util.Reference.NORMAL_FONT;
 import static drkninja.sudoku.util.Reference.SELECTED_FONT;
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -29,6 +30,7 @@ public class SudoPanel extends JLabel {
      * 3 - Hinted (Checked)
      */
     public int STATUS;
+    public Color PANEL_COLOR;
     public int xpos = 0;
     public int ypos = 0;
     public String Text = " ";
@@ -49,20 +51,30 @@ public class SudoPanel extends JLabel {
     /**
      * Resets Sudoku Panel
      */
-    public void reset() {
+    public void init() {
         setText(Text);
-        setVisible(true); 
-//        setFont(new java.awt.Font("Curlz MT", 0, 36));
-        setFont(NORMAL_FONT);
-        setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        setHorizontalAlignment(javax.swing.SwingConstants.CENTER);        
+        setVisible(true);
+        setColor();
+        deselect();
+    }
+    
+    /**
+     * Checks if the panel is fixed
+     * @return true if fixed
+     */
+    public boolean isFixed(){
+        return STATUS == 1;
     }
     
     public void select(){
         setFont(SELECTED_FONT);
+        setForeground(Color.magenta);
     }
     
     public void deselect(){
         setFont(NORMAL_FONT);
+        setForeground(PANEL_COLOR);
     }
     
     /**
@@ -77,7 +89,7 @@ public class SudoPanel extends JLabel {
         SudoPanel grp[] = new SudoPanel[9];
         while (i < 9){
             grp[i] = new SudoPanel(text, x, y);
-            grp[i].reset();
+            grp[i].init();
             x += 56;
             if(i == 2 || i == 5){
                 x = tx;
@@ -104,7 +116,7 @@ public class SudoPanel extends JLabel {
             for(j = 0; j<9; j++){
                 try{
                     SudokuGUI.SudokuPanel.add(SudokuGUI.Block[i][j], new org.netbeans.lib.awtextra.AbsoluteConstraints(SudokuGUI.Block[i][j].xpos, SudokuGUI.Block[i][j].ypos, 50, 50));
-                    SudokuGUI.Block[i][j].reset();
+                    SudokuGUI.Block[i][j].init();
                 }
                 catch(Exception e){
                     JOptionPane.showMessageDialog(null, "Error when adding panel at " + i);
@@ -112,6 +124,31 @@ public class SudoPanel extends JLabel {
                 }
             }
         }
+    }
+
+    /**
+     * Sets color according to status
+     */
+    private void setColor() {
+        switch(STATUS){
+            case 1:
+                PANEL_COLOR = Color.blue;
+                break;
+            case 3:
+                PANEL_COLOR = Color.gray;
+                break;
+            default:
+                PANEL_COLOR = Color.black;
+        }
+    }
+
+    /**
+     * Fixes this panel
+     */
+    public void fix() {
+        STATUS = 1;
+        setColor();
+        deselect();
     }
     
     
