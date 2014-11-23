@@ -21,13 +21,12 @@ import javax.swing.JOptionPane;
 public class SudoPanel extends JLabel {
     
     public int ACTUAL_VALUE;
-    public int SELECTED_VALUES[];
+    public boolean SELECTED_VALUES[] = new boolean[10];
     /**
      * Status of the panel
-     * 0 - Empty
+     * 0 - Empty / without hints
      * 1 - Fixed
-     * 2 - Set
-     * 3 - Hinted (Checked)
+     * 2 - Hinted
      */
     public int STATUS;
     public Color PANEL_COLOR;
@@ -57,6 +56,7 @@ public class SudoPanel extends JLabel {
         setVisible(true);
         setColor();
         deselect();
+        resetHints();
     }
     
     /**
@@ -67,22 +67,52 @@ public class SudoPanel extends JLabel {
         return STATUS == 1;
     }
     
+    /**
+     * Selects Panel
+     */
     public void select(){
         setFont(SELECTED_FONT);
         setForeground(Color.magenta);
     }
     
+    /**
+     * Deselects Panel
+     */
     public void deselect(){
+        if(!isFixed()){
+            if(!SELECTED_VALUES[0]){
+                setStatus(2);
+                setHintTip();
+            }
+            else{
+                setStatus(0);
+                setToolTipText(null);
+            }
+        }
         setFont(NORMAL_FONT);
         setForeground(PANEL_COLOR);
+        setText(Text);
     }
     
+    
+    /**
+     * Resets selected hints
+     */
+    public void resetHints(){
+        int i;
+        SELECTED_VALUES[0] = true;
+        for(i=1; i<10; i++){
+            SELECTED_VALUES[i] = false;
+        }
+        setStatus(0);
+    }
+  
     /**
      * Sets the group of sudoku panels
-     * @param grp Array of slots in a box
      * @param x starting x-position
      * @param y starting y-position
      * @param text Initial text
+     * @return Group of panels
      */
     public static SudoPanel[] setBoxGroup(int x, int y, String text){
         int i = 0, tx = x;
@@ -102,12 +132,12 @@ public class SudoPanel extends JLabel {
     
     /**
      * Sets the group of sudoku panels
-     * @param grp Array of slots in a box
      * @param x starting x-position
      * @param y starting y-position
+     * @return Group of panels
      */
     public static SudoPanel[] setBoxGroup(int x, int y){
-        return setBoxGroup(x, y, "");
+        return setBoxGroup(x, y, " ");
     }
     
     public static void addPanels(){
@@ -134,7 +164,7 @@ public class SudoPanel extends JLabel {
             case 1:
                 PANEL_COLOR = Color.blue;
                 break;
-            case 3:
+            case 2:
                 PANEL_COLOR = Color.gray;
                 break;
             default:
@@ -145,12 +175,32 @@ public class SudoPanel extends JLabel {
     /**
      * Fixes this panel
      */
-    public void fix() {
-        STATUS = 1;
-        setColor();
+    public void fix(int i) {
+        Text = "" + i;
+        setStatus(1);
         deselect();
     }
-    
-    
-    
+
+    private void setStatus(int i) {
+        STATUS = i;
+        setColor();
+    }
+
+    private void setHintTip() {
+        String Hint="";
+        boolean f = true;
+        for(int i = 1; i<10; i++){
+            if(SELECTED_VALUES[i]) {
+                if(f){
+                    Hint = "" + i;
+                    f = false;
+                }
+                else{
+                    Hint = Hint + " | " + i;
+                }
+            }
+        }
+        setToolTipText(Hint);
+    }
+   
 }

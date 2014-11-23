@@ -25,6 +25,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     public static SudoPanel SELECTED_PANEL;
     public static JCheckBox[] HintBox = new JCheckBox[10];
     public static JRadioButton[] SelectedNumber = new JRadioButton[10];
+    public static int CLICKED = 0;
 
     /**
      * Creates new form SudokuGUI
@@ -106,12 +107,6 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         Selection.add(Choice_9);
         Choice_9.setText("9");
-
-        Box_None.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Box_NoneActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout SelectionPanelLayout = new javax.swing.GroupLayout(SelectionPanel);
         SelectionPanel.setLayout(SelectionPanelLayout);
@@ -232,22 +227,16 @@ public class SudokuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Box_NoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Box_NoneActionPerformed
-        if(Box_None.isSelected()){
-            resetHint();
-        }
-    }//GEN-LAST:event_Box_NoneActionPerformed
-
     private void init(){
         setLocationRelativeTo(null);
         setupHintBox();
         setupBlocks();
         setupButtons();
         setBGI();
-        resetHint();
         Choice_None.setSelected(true);
-        hintListener();
         alphaTest();
+        setHints();
+        hintListener();
     }
     
     /**
@@ -331,32 +320,13 @@ public class SudokuGUI extends javax.swing.JFrame {
     
     public void clickedPanel(SudoPanel sp){
         if(sp.isFixed()) return;
+        saveHints();
         SELECTED_PANEL.deselect();
         SELECTED_PANEL = sp;
         SELECTED_PANEL.select();
+        setHints();
     }
-            
-            
-    /**
-     * Resets hint boxes to no hints
-     */
-    public static void resetHint(){
-        resetHint(0);
-    }
-    
-    /**
-     * Resets hint boxes
-     * @param i '0' means no hints
-     */
-    public static void resetHint(int i){
-        if(i == 0){
-            HintBox[0].setSelected(true);
-            for(int j=1; j<10; j++) HintBox[j].setSelected(false);
-        }
-        else{
-            HintBox[0].setSelected(false);
-        }
-    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JCheckBox Box_1;
@@ -384,19 +354,68 @@ public class SudokuGUI extends javax.swing.JFrame {
     public static javax.swing.JPanel SudokuPanel;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Preset values for testing
+     */
+    private void alphaTest() {
+        SELECTED_PANEL = Block[0][0];
+        SELECTED_PANEL.select();
+        Block[3][5].fix(9);
+    }
+
+    /**
+     * Sets hints according to selected panels
+     */
+    private void setHints() {
+        for(int i = 0; i<10; i++){
+            HintBox[i].setSelected(SELECTED_PANEL.SELECTED_VALUES[i]);
+        }
+    }
+    
+    /**
+     * Saves hints once clicked away
+     */
+    private void saveHints(){
+        for(int i = 0; i<10; i++){
+            SELECTED_PANEL.SELECTED_VALUES[i] = HintBox[i].isSelected();
+        }
+    }
+    
+    /**
+     * sets hint boxes according to clicked
+     * @param HB Clicked Box
+     */
+    public static void setHintBox(JCheckBox HB){
+        int i, j;
+        if(HB.equals(HintBox[0])){
+            HintBox[0].setSelected(true);
+            for(j=1; j<10; j++) HintBox[j].setSelected(false);
+        }
+        else{
+            HintBox[0].setSelected(false);
+        }
+        
+        // If all hints deselected, None is autoselected
+        for(i=1; i<10; i++){
+            if(HintBox[i].isSelected()) break;
+        }
+        if (i == 10) {
+            HintBox[0].setSelected(true);
+        }
+    }
+    
+    /**
+     * Checks if hints are clicked
+     */
     private void hintListener() {
-        for(int i=1; i<10; i++){
+        for(int i=0; i<10; i++){
             HintBox[i].addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    resetHint(1);
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {                    
+                    setHintBox((JCheckBox)evt.getSource());
                 }
             });
         }
     }
 
-    private void alphaTest() {
-        SELECTED_PANEL = Block[0][0];
-        SELECTED_PANEL.select();
-        Block[3][5].fix();
-    }
 }
