@@ -34,7 +34,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         initComponents();    
         setVisible(true);
         init();
-        clickListener();
+        listenEnable();
     }
 
     /**
@@ -72,6 +72,11 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         SudokuPanel.setPreferredSize(new java.awt.Dimension(500, 500));
         SudokuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -227,6 +232,11 @@ public class SudokuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        //JOptionPane.showMessageDialog(null, evt.getKeyChar());
+        setNumber(evt.getKeyChar());
+    }//GEN-LAST:event_formKeyPressed
+
     private void init(){
         setLocationRelativeTo(null);
         setupHintBox();
@@ -235,8 +245,9 @@ public class SudokuGUI extends javax.swing.JFrame {
         setBGI();
         Choice_None.setSelected(true);
         alphaTest();
-        setHints();
-        hintListener();
+        setValues();
+        setFocuser(false);
+        requestFocus();
     }
     
     /**
@@ -324,7 +335,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         SELECTED_PANEL.deselect();
         SELECTED_PANEL = sp;
         SELECTED_PANEL.select();
-        setHints();
+        setValues();
     }
 
     
@@ -364,11 +375,22 @@ public class SudokuGUI extends javax.swing.JFrame {
     }
 
     /**
-     * Sets hints according to selected panels
+     * Sets values according to selected panel
      */
-    private void setHints() {
+    private void setValues() {
+        SelectedNumber[SELECTED_PANEL.ACTUAL_VALUE].setSelected(true);
         for(int i = 0; i<10; i++){
             HintBox[i].setSelected(SELECTED_PANEL.SELECTED_VALUES[i]);
+        }
+    }
+
+    /**
+     * Sets focus according to selected panel
+     */
+    private void setFocuser(boolean x) {
+        for(int i = 0; i<10; i++){
+            HintBox[i].setFocusable(x);
+            SelectedNumber[i].setFocusable(x);
         }
     }
     
@@ -385,14 +407,21 @@ public class SudokuGUI extends javax.swing.JFrame {
      * sets hint boxes according to clicked
      * @param HB Clicked Box
      */
-    public static void setHintBox(JCheckBox HB){
-        int i, j;
-        if(HB.equals(HintBox[0])){
+    public void setHintBox(JCheckBox HB){
+        int i, j, sel;
+        
+        for(sel=0; sel<10; sel++){
+            if(HB.equals(HintBox[sel])) break;
+        }
+        
+        if(sel == 0){
             HintBox[0].setSelected(true);
             for(j=1; j<10; j++) HintBox[j].setSelected(false);
         }
         else{
             HintBox[0].setSelected(false);
+            //SelectedNumber[sel].setSelected(true);
+            if(HintBox[sel].isSelected()) setNumber((char)(48+sel));
         }
         
         // If all hints deselected, None is autoselected
@@ -415,6 +444,48 @@ public class SudokuGUI extends javax.swing.JFrame {
                     setHintBox((JCheckBox)evt.getSource());
                 }
             });
+        }
+    }
+
+    /**
+     * Checks if selected
+     */
+    private void selectListener() {
+        for(int i=0; i<10; i++){
+            SelectedNumber[i].addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {                    
+                    setNumber();
+                }
+            });
+        }
+    }
+    
+    /**
+     * Saves number
+     */
+    public void setNumber(){
+        int i, j;
+        for(i=0; i<10; i++){
+            if(SelectedNumber[i].isSelected()){
+                SELECTED_PANEL.setNumber(i);
+                break;
+            }
+        }
+
+    }
+
+    private void listenEnable() {
+        clickListener();
+        hintListener();
+        selectListener();
+    }
+
+    public void setNumber(char keyChar) {
+        int value =((int)keyChar) - 48;
+        if (value >= 0 && value <= 9){
+            SELECTED_PANEL.setNumber(value);
+            SelectedNumber[value].setSelected(true);
         }
     }
 

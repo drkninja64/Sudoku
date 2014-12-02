@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class SudoPanel extends JLabel {
     
-    public int ACTUAL_VALUE;
+    public int ACTUAL_VALUE = 0;
     public boolean SELECTED_VALUES[] = new boolean[10];
     /**
      * Status of the panel
@@ -40,11 +40,13 @@ public class SudoPanel extends JLabel {
         Text = text;
         xpos = x;
         ypos = y;
+        ACTUAL_VALUE = 0;
     }
     
     public SudoPanel(int x, int y){
         xpos = x;
         ypos = y;
+        ACTUAL_VALUE = 0;
     }
 
     /**
@@ -73,6 +75,12 @@ public class SudoPanel extends JLabel {
     public void select(){
         setFont(SELECTED_FONT);
         setForeground(Color.magenta);
+        try{
+            setNull();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "SET NULL Error");
+        }
     }
     
     /**
@@ -203,4 +211,17 @@ public class SudoPanel extends JLabel {
         setToolTipText(Hint);
     }
    
+    public void setNumber(int i){
+        Text = "" + i; 
+        ACTUAL_VALUE = i;
+        setText(Text);
+        if(i == 0) Text = " ";
+    }
+
+    public void setNull() {
+        if(ACTUAL_VALUE == 0){
+            setText("0");
+        }
+    }
+    
 }
