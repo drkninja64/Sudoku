@@ -8,11 +8,12 @@ package drkninja.sudoku.gui;
 import drkninja.sudoku.src.SudoPanel;
 import static drkninja.sudoku.util.Reference.BGI_PATH;
 import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
+import static drkninja.sudoku.util.Reference.setSystemLookAndFeel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import russell.sudoku.src.SudoGen;
 
 /**
  *
@@ -31,6 +32,7 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
+		setSystemLookAndFeel();
         initComponents();    
         setVisible(true);
         init();
@@ -372,6 +374,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         SELECTED_PANEL = Block[0][0];
         SELECTED_PANEL.select();
         Block[3][5].fix(9);
+		SudoGen.demo();
     }
 
     /**
@@ -482,7 +485,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     }
 
     public void setNumber(char keyChar) {
-        int value =((int)keyChar) - 48;
+        int value = keyChar - '0';
         if (value >= 0 && value <= 9){
             SELECTED_PANEL.setNumber(value);
             SelectedNumber[value].setSelected(true);

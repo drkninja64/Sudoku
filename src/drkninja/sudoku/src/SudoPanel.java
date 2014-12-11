@@ -184,7 +184,7 @@ public class SudoPanel extends JLabel {
      * Fixes this panel
      */
     public void fix(int i) {
-        Text = "" + i;
+        Text = "" + (ACTUAL_VALUE = i);
         setStatus(1);
         deselect();
     }
