@@ -14,7 +14,6 @@ public class SudoMain {
     public static javax.swing.JFrame MainGUI;
     
     public static void main(String args[]){
-        //MainGUI = 
-        new SudokuGUI();
+        MainGUI = new SudokuGUI();
     }
 }

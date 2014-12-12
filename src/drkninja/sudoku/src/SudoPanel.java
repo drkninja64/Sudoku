@@ -223,5 +223,11 @@ public class SudoPanel extends JLabel {
             setText("0");
         }
     }
+
+    public void reset() {
+        setNumber(0);
+        resetHints();
+        deselect();
+    }
     
 }
