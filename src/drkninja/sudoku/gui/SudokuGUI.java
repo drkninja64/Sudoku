@@ -12,7 +12,9 @@ import static drkninja.sudoku.util.Reference.setSystemLookAndFeel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import russell.sudoku.src.SudoCheck;
 import russell.sudoku.src.SudoGen;
 
 /**
@@ -32,7 +34,7 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
-		setSystemLookAndFeel();
+	setSystemLookAndFeel();
         initComponents();    
         setVisible(true);
         init();
@@ -71,6 +73,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         Box_9 = new javax.swing.JCheckBox();
         Choice_9 = new javax.swing.JRadioButton();
         Box_None = new javax.swing.JCheckBox();
+        CheckBN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -210,6 +213,13 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        CheckBN.setText("Check");
+        CheckBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -218,7 +228,9 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -227,7 +239,10 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CheckBN)))
                 .addContainerGap())
         );
 
@@ -238,6 +253,14 @@ public class SudokuGUI extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(null, evt.getKeyChar());
         setNumber(evt.getKeyChar());
     }//GEN-LAST:event_formKeyPressed
+
+    private void CheckBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBNActionPerformed
+        String msg;
+        setNumber();
+        if(SudoCheck.eureka()) msg = "It's CORRECT!!!";
+        else msg = "Dang it! wrong!!";
+        JOptionPane.showMessageDialog(null, msg);
+    }//GEN-LAST:event_CheckBNActionPerformed
 
     private void init(){
         setLocationRelativeTo(null);
@@ -352,6 +375,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private static javax.swing.JCheckBox Box_8;
     private static javax.swing.JCheckBox Box_9;
     private static javax.swing.JCheckBox Box_None;
+    private javax.swing.JButton CheckBN;
     private static javax.swing.JRadioButton Choice_1;
     private static javax.swing.JRadioButton Choice_2;
     private static javax.swing.JRadioButton Choice_3;
@@ -374,7 +398,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         SELECTED_PANEL = Block[0][0];
         SELECTED_PANEL.select();
         //Block[3][5].fix(9);
-		SudoGen.demo();
+	SudoGen.demo();
     }
 
     /**
