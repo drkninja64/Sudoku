@@ -6,8 +6,7 @@
 package russell.sudoku.src;
 
 import drkninja.sudoku.gui.SudokuGUI;
-import russell.sudoku.util.Reference;
-import javax.swing.JOptionPane;
+import russell.sudoku.util.*;
 
 /**
  *
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class SudoGen {
 
-	private static int[][] Question = new int[9][9];
+	private static final int[][] Question = new int[9][9];
 
 	public static void qGen() {
 		int Index = Reference.Rand.nextInt(Reference.SolvedDemo.length);
@@ -28,14 +27,17 @@ public class SudoGen {
 
 	public static void newGame() {
 		qGen();
-		int Diff = Reference.Difficulty / 2;
-		for (int a = 0; a < Diff; a++) {
+		for (int a = 0; a < Reference.Difficulty; a++) {
 			int x1 = Reference.Rand.nextInt(9);
 			int y1 = Reference.Rand.nextInt(9);
-			int x2 = (x1-8 < 0) ? -(x1-8) : x1-8;
-			int y2 = (y1-8 < 0) ? -(y1-8) : y1-8;
-			SudokuGUI.Block[x1][y1].fix(Question[x1][y1]);
-			SudokuGUI.Block[x2][y2].fix(Question[x2][y2]);
+			int x2 = Utility.abs(x1 - 8);
+			int y2 = Utility.abs(y1 - 8);
+			if (SudokuGUI.Block[x1][y1].isFixed() || SudokuGUI.Block[x2][y2].isFixed()) {
+				a--;
+			} else {
+				SudokuGUI.Block[x1][y1].fix(Question[x1][y1]);
+				SudokuGUI.Block[x2][y2].fix(Question[x2][y2]);
+			}
 		}
 	}
 

@@ -38,6 +38,8 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="SelectionPanel" max="32767" attributes="0"/>
                   <Component id="CheckBN" max="32767" attributes="0"/>
+                  <Component id="ResetBN" max="32767" attributes="0"/>
+                  <Component id="NewBN" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -53,6 +55,10 @@
                       <Component id="SelectionPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CheckBN" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="ResetBN" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="NewBN" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -374,6 +380,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBNActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ResetBN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reset"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ResetBNActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="NewBN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="New Game"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

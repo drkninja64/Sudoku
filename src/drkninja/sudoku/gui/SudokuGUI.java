@@ -10,12 +10,12 @@ import static drkninja.sudoku.util.Reference.BGI_PATH;
 import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import russell.sudoku.src.SudoCheck;
-import russell.sudoku.src.SudoGen;
-import static russell.sudoku.util.Reference.setSystemLookAndFeel;
+import russell.sudoku.src.*;
+import russell.sudoku.util.Utility;
 
 /**
  *
@@ -34,7 +34,7 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
-	setSystemLookAndFeel();
+		Utility.setSystemLookAndFeel();
         initComponents();    
         setVisible(true);
         init();
@@ -74,6 +74,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         Choice_9 = new javax.swing.JRadioButton();
         Box_None = new javax.swing.JCheckBox();
         CheckBN = new javax.swing.JButton();
+        ResetBN = new javax.swing.JButton();
+        NewBN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -220,6 +222,15 @@ public class SudokuGUI extends javax.swing.JFrame {
             }
         });
 
+        ResetBN.setText("Reset");
+        ResetBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetBNActionPerformed(evt);
+            }
+        });
+
+        NewBN.setText("New Game");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,7 +241,9 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ResetBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NewBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -242,7 +255,11 @@ public class SudokuGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckBN)))
+                        .addComponent(CheckBN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ResetBN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NewBN)))
                 .addContainerGap())
         );
 
@@ -262,6 +279,12 @@ public class SudokuGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, msg);
 		this.requestFocus();
     }//GEN-LAST:event_CheckBNActionPerformed
+
+    private void ResetBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetBNActionPerformed
+        if(JOptionPane.showConfirmDialog(null, "Are you sure?","Reset?", ConfirmationCallback.YES_NO_OPTION)== 1){
+			
+		}
+    }//GEN-LAST:event_ResetBNActionPerformed
 
     private void init(){
         setLocationRelativeTo(null);
@@ -388,6 +411,8 @@ public class SudokuGUI extends javax.swing.JFrame {
     private static javax.swing.JRadioButton Choice_8;
     private static javax.swing.JRadioButton Choice_9;
     private static javax.swing.JRadioButton Choice_None;
+    private javax.swing.JButton NewBN;
+    private javax.swing.JButton ResetBN;
     private javax.swing.ButtonGroup Selection;
     private javax.swing.JPanel SelectionPanel;
     public static javax.swing.JPanel SudokuPanel;
@@ -424,6 +449,9 @@ public class SudokuGUI extends javax.swing.JFrame {
             HintBox[i].setFocusable(x);
             SelectedNumber[i].setFocusable(x);
         }
+		CheckBN.setFocusable(x);
+		ResetBN.setFocusable(x);
+		NewBN.setFocusable(x);
     }
     
     /**
