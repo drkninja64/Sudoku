@@ -8,7 +8,6 @@ package drkninja.sudoku.gui;
 import drkninja.sudoku.src.SudoPanel;
 import static drkninja.sudoku.util.Reference.BGI_PATH;
 import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
-import static drkninja.sudoku.util.Reference.setSystemLookAndFeel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
@@ -16,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import russell.sudoku.src.SudoCheck;
 import russell.sudoku.src.SudoGen;
+import static russell.sudoku.util.Reference.setSystemLookAndFeel;
 
 /**
  *
@@ -260,6 +260,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         if(SudoCheck.eureka()) msg = "It's CORRECT!!!";
         else msg = "Dang it! wrong!!";
         JOptionPane.showMessageDialog(null, msg);
+		this.requestFocus();
     }//GEN-LAST:event_CheckBNActionPerformed
 
     private void init(){
@@ -269,7 +270,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         setupButtons();
         setBGI();
         Choice_None.setSelected(true);
-        alphaTest();
+		SudoGen.newGame();
+		alphaTest();
         setValues();
         setFocuser(false);
         requestFocus();
@@ -395,10 +397,13 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Preset values for testing
      */
     private void alphaTest() {
-        SELECTED_PANEL = Block[0][0];
+		for (int i = 0; i < 9; i++) {
+			if (!Block[0][i].isFixed()) {
+				SELECTED_PANEL = Block[0][i];
+				break;
+			}
+		}
         SELECTED_PANEL.select();
-        //Block[3][5].fix(9);
-	SudoGen.demo();
     }
 
     /**

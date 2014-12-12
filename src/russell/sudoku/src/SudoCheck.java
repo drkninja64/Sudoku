@@ -52,6 +52,9 @@ public class SudoCheck {
 	}
 
 	public static boolean eureka() {
+
+		convertTo4D();
+
 		if (!isFilled()) {
 			return false;
 		}
