@@ -373,7 +373,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private void alphaTest() {
         SELECTED_PANEL = Block[0][0];
         SELECTED_PANEL.select();
-        Block[3][5].fix(9);
+        //Block[3][5].fix(9);
 		SudoGen.demo();
     }
 
