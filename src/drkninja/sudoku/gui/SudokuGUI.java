@@ -446,11 +446,13 @@ public class SudokuGUI extends javax.swing.JFrame {
             if(HB.equals(HintBox[sel])) break;
         }
         
+		//If none is selected, all hints are deselected
         if(sel == 0){
             HintBox[0].setSelected(true);
             for(j=1; j<10; j++) HintBox[j].setSelected(false);
         }
         else{
+			//if a number is selected, it is saved
             HintBox[0].setSelected(false);
             //SelectedNumber[sel].setSelected(true);
             if(HintBox[sel].isSelected()) setNumber((char)(48+sel));
@@ -501,6 +503,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         for(i=0; i<10; i++){
             if(SelectedNumber[i].isSelected()){
                 SELECTED_PANEL.setNumber(i);
+				SELECTED_PANEL.resetHints();
+				setValues();
                 break;
             }
         }

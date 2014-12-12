@@ -173,7 +173,7 @@ public class SudoPanel extends JLabel {
                 PANEL_COLOR = Color.blue;
                 break;
             case 2:
-                PANEL_COLOR = Color.gray;
+                PANEL_COLOR = Color.ORANGE;
                 break;
             default:
                 PANEL_COLOR = Color.black;
