@@ -7,6 +7,7 @@ package russell.sudoku.gui;
 
 import drkninja.sudoku.gui.SudokuGUI;
 import drkninja.sudoku.main.SudoMain;
+import javax.swing.JOptionPane;
 import russell.sudoku.util.Reference;
 
 /**
@@ -49,7 +50,6 @@ public class SetDifficulty extends javax.swing.JFrame {
         EasyRadio.setText("Easy");
 
         DifficultyGroup.add(MediumRadio);
-        MediumRadio.setSelected(true);
         MediumRadio.setText("Medium");
 
         DifficultyGroup.add(HardRadio);
@@ -112,6 +112,9 @@ public class SetDifficulty extends javax.swing.JFrame {
 			Reference.Difficulty = 10;
 		} else if (FreeRadio.isSelected()) {
 			Reference.Difficulty = 0;
+		} else {
+			JOptionPane.showMessageDialog(null, "Select a difficulty.", "Error!", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		dispose();
 		SudoMain.MainGUI = new SudokuGUI();

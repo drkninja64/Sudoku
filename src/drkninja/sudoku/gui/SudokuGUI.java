@@ -15,6 +15,7 @@ import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import russell.sudoku.gui.SetDifficulty;
 import russell.sudoku.src.*;
 import russell.sudoku.util.Utility;
 
@@ -274,10 +275,20 @@ public class SudokuGUI extends javax.swing.JFrame {
         HelpMenu.setText("Help");
 
         RuleMI.setText("Rules");
+        RuleMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RuleMIActionPerformed(evt);
+            }
+        });
         HelpMenu.add(RuleMI);
         HelpMenu.add(jSeparator1);
 
         AboutMI.setText("About");
+        AboutMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AboutMIActionPerformed(evt);
+            }
+        });
         HelpMenu.add(AboutMI);
 
         MainMenuBar.add(HelpMenu);
@@ -334,6 +345,16 @@ public class SudokuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		Utility.onExit();
     }//GEN-LAST:event_formWindowClosing
+
+    private void RuleMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RuleMIActionPerformed
+        // TODO add your handling code here:
+		Help.rules();
+    }//GEN-LAST:event_RuleMIActionPerformed
+
+    private void AboutMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutMIActionPerformed
+        // TODO add your handling code here:
+		Help.about();
+    }//GEN-LAST:event_AboutMIActionPerformed
 
     private void init(){
         setLocationRelativeTo(null);
@@ -632,7 +653,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private void newGameAction() {
         if(JOptionPane.showConfirmDialog(null, "This game will be quit. Are you sure?","New Game", ConfirmationCallback.YES_NO_OPTION)== JOptionPane.YES_OPTION){
             this.dispose();
-            MainGUI = new SudokuGUI();
+            new SetDifficulty().setVisible(true);
 	}
     }
 

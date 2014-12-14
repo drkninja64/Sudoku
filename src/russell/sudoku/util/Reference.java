@@ -12,7 +12,7 @@ import java.util.Random;
  * @author Russell
  */
 public class Reference {
-	
+
 	public static final int[][][][] Array4D = new int[3][3][3][3];
 	public static final Random Rand = new Random();
 	public static int Difficulty;
