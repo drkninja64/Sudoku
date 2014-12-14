@@ -7,6 +7,7 @@ package russell.sudoku.src;
 
 import drkninja.sudoku.gui.SudokuGUI;
 import russell.sudoku.util.*;
+import russell.sudoku.gui.SetDifficulty;
 
 /**
  *
@@ -15,14 +16,19 @@ import russell.sudoku.util.*;
 public class SudoGen {
 
 	private static final int[][] Question = new int[9][9];
+	private static int PreviousIndex = -1;
+	private static int CurrentIndex;
 
 	public static void qGen() {
-		int Index = Reference.Rand.nextInt(Reference.SolvedDemo.length);
+		do {
+			CurrentIndex = Reference.Rand.nextInt(Reference.SolvedDemo.length);
+		} while (CurrentIndex == PreviousIndex);
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				Question[i][j] = Reference.SolvedDemo[Index].charAt(9 * i + j) - '0';
+				Question[i][j] = Reference.SolvedDemo[CurrentIndex].charAt(9 * i + j) - '0';
 			}
 		}
+		PreviousIndex = CurrentIndex;
 	}
 
 	public static void newGame() {
@@ -32,7 +38,7 @@ public class SudoGen {
 			int y1 = Reference.Rand.nextInt(9);
 			int x2 = Utility.abs(x1 - 8);
 			int y2 = Utility.abs(y1 - 8);
-			if (SudokuGUI.Block[x1][y1].isFixed() || SudokuGUI.Block[x2][y2].isFixed()) {
+			if (SudokuGUI.Block[x1][y1].isFixed()) {
 				a--;
 			} else {
 				SudokuGUI.Block[x1][y1].fix(Question[x1][y1]);
@@ -41,17 +47,8 @@ public class SudoGen {
 		}
 	}
 
-	// WIP
+	// Work in progress
 	public static void generate() {
-//		int num;
-//		String msg ="";
-//		for(int a = 0; a < 3; a++) {
-//			for(int b = 0; b < 3; b++) {
-//				for(int c = 0; c < 9; c++) {
-//					check[a][b][c] = false;
-//				}
-//			}
-//		}
 		for(int a = 0; a < 3; a++) {
 			for(int b = 0; b < 3; b++) {
 				for(int c = 0; c < 9; c++) {

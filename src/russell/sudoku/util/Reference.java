@@ -15,7 +15,7 @@ public class Reference {
 	
 	public static final int[][][][] Array4D = new int[3][3][3][3];
 	public static final Random Rand = new Random();
-	public static final int Difficulty = 20;
+	public static int Difficulty;
 
 	public static final String SolvedDemo[] = {
 		"294617583673825194851349726126938745589247316473615298471369852968452731532187964",

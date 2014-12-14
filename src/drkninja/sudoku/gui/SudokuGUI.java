@@ -35,7 +35,6 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
-		Utility.setSystemLookAndFeel();
         initComponents();    
         setVisible(true);
         init();
@@ -80,13 +79,19 @@ public class SudokuGUI extends javax.swing.JFrame {
         ResetMI = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         CheckMI = new javax.swing.JMenuItem();
+        ExitMI = new javax.swing.JMenuItem();
         HelpMenu = new javax.swing.JMenu();
         RuleMI = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         AboutMI = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sudoku");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -254,6 +259,15 @@ public class SudokuGUI extends javax.swing.JFrame {
         });
         GameMenu.add(CheckMI);
 
+        ExitMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        ExitMI.setText("Exit");
+        ExitMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMIActionPerformed(evt);
+            }
+        });
+        GameMenu.add(ExitMI);
+
         MainMenuBar.add(GameMenu);
 
         HelpMenu.setMnemonic('h');
@@ -310,6 +324,16 @@ public class SudokuGUI extends javax.swing.JFrame {
     private void ResetMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetMIActionPerformed
         resetAction();
     }//GEN-LAST:event_ResetMIActionPerformed
+
+    private void ExitMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMIActionPerformed
+        // TODO add your handling code here:
+		Utility.onExit();
+    }//GEN-LAST:event_ExitMIActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+		Utility.onExit();
+    }//GEN-LAST:event_formWindowClosing
 
     private void init(){
         setLocationRelativeTo(null);
@@ -437,6 +461,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private static javax.swing.JRadioButton Choice_8;
     private static javax.swing.JRadioButton Choice_9;
     private static javax.swing.JRadioButton Choice_None;
+    private javax.swing.JMenuItem ExitMI;
     private javax.swing.JMenu GameMenu;
     private javax.swing.JMenu HelpMenu;
     private javax.swing.JMenuBar MainMenuBar;
