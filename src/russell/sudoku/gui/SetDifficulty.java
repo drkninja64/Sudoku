@@ -21,6 +21,9 @@ public class SetDifficulty extends javax.swing.JFrame {
 	 */
 	public SetDifficulty() {
 		initComponents();
+                setVisible(true);
+                MediumRadio.setSelected(true);
+                RockButton.requestFocus();
 	}
 
 	/**
@@ -105,11 +108,11 @@ public class SetDifficulty extends javax.swing.JFrame {
     private void RockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RockButtonActionPerformed
         // TODO add your handling code here:
 		if (EasyRadio.isSelected()) {
-			Reference.Difficulty = 18;
+			Reference.Difficulty = Reference.EASY_D;
 		} else if (MediumRadio.isSelected()) {
-			Reference.Difficulty = 14;
+			Reference.Difficulty = Reference.MEDIUM_D;
 		} else if (HardRadio.isSelected()) {
-			Reference.Difficulty = 10;
+			Reference.Difficulty = Reference.HARD_D;
 		} else if (FreeRadio.isSelected()) {
 			Reference.Difficulty = 0;
 		} else {

@@ -1,0 +1,7 @@
+- sound effects
+- icons
+- main menu
+- FB page
+- load/save option
+- sudo gen
+- 

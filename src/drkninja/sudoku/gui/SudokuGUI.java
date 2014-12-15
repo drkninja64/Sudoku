@@ -5,7 +5,6 @@
 
 package drkninja.sudoku.gui;
 
-import static drkninja.sudoku.main.SudoMain.MainGUI;
 import drkninja.sudoku.src.SudoPanel;
 import static drkninja.sudoku.util.Reference.BGI_PATH;
 import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
@@ -36,7 +35,8 @@ public class SudokuGUI extends javax.swing.JFrame {
      * Creates new form SudokuGUI
      */
     public SudokuGUI() {
-        initComponents();    
+        initComponents();   
+        setCustIcon();
         setVisible(true);
         init();
         listenEnable();
@@ -74,6 +74,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         Box_9 = new javax.swing.JCheckBox();
         Choice_9 = new javax.swing.JRadioButton();
         Box_None = new javax.swing.JCheckBox();
+        CheckBN = new javax.swing.JButton();
         MainMenuBar = new javax.swing.JMenuBar();
         GameMenu = new javax.swing.JMenu();
         NewGameMI = new javax.swing.JMenuItem();
@@ -229,6 +230,13 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        CheckBN.setText("Check");
+        CheckBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CheckBNActionPerformed(evt);
+            }
+        });
+
         GameMenu.setMnemonic('G');
         GameMenu.setText("Game");
 
@@ -303,7 +311,9 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(SelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -312,7 +322,10 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SudokuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CheckBN)))
                 .addContainerGap())
         );
 
@@ -355,6 +368,10 @@ public class SudokuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		Help.about();
     }//GEN-LAST:event_AboutMIActionPerformed
+
+    private void CheckBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBNActionPerformed
+        checkAction();
+    }//GEN-LAST:event_CheckBNActionPerformed
 
     private void init(){
         setLocationRelativeTo(null);
@@ -471,6 +488,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private static javax.swing.JCheckBox Box_8;
     private static javax.swing.JCheckBox Box_9;
     private static javax.swing.JCheckBox Box_None;
+    private javax.swing.JButton CheckBN;
     private javax.swing.JMenuItem CheckMI;
     private static javax.swing.JRadioButton Choice_1;
     private static javax.swing.JRadioButton Choice_2;
@@ -637,7 +655,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     }
 
     private void resetAction() {
-        if(JOptionPane.showConfirmDialog(null, "Are you sure?","Reset", ConfirmationCallback.YES_NO_OPTION)== JOptionPane.YES_OPTION){
+        if(JOptionPane.showConfirmDialog(null, "Current progress will be lost. Are you sure?","Reset", ConfirmationCallback.YES_NO_OPTION)== JOptionPane.YES_OPTION){
             for(int i = 0; i<9; i++){
                 for(int j = 0; j<9; j++){
                     if(!Block[i][j].isFixed()){
@@ -651,10 +669,14 @@ public class SudokuGUI extends javax.swing.JFrame {
     }
 
     private void newGameAction() {
-        if(JOptionPane.showConfirmDialog(null, "This game will be quit. Are you sure?","New Game", ConfirmationCallback.YES_NO_OPTION)== JOptionPane.YES_OPTION){
+        if(JOptionPane.showConfirmDialog(null, "Current progress will be lost. Are you sure?","New Game", ConfirmationCallback.YES_NO_OPTION)== JOptionPane.YES_OPTION){
             this.dispose();
             new SetDifficulty().setVisible(true);
 	}
+    }
+
+    private void setCustIcon() {
+        //setIconImages(new java.util.List);
     }
 
 }

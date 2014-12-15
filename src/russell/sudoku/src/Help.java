@@ -5,6 +5,7 @@
 
 package russell.sudoku.src;
 
+import drkninja.sudoku.util.Reference;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,7 +43,7 @@ public class Help {
 	}
 
 	public static void about() {
-		String Title = "Sudoku v1.0.2";
+		String Title = Reference.TITLE + " " + Reference.VERSION;
 		String Message[] = {
 			"WARNING: This program is brought to you by",
 			"> Sajag Acharya",
