@@ -8,6 +8,7 @@ package drkninja.sudoku.gui;
 import drkninja.sudoku.src.SudoPanel;
 import static drkninja.sudoku.util.Reference.BGI_PATH;
 import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.security.auth.callback.ConfirmationCallback;
@@ -677,6 +678,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
     private void setCustIcon() {
         //setIconImages(new java.util.List);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/drkninja/sudoku/res/SudoIcon40.png")));
     }
 
 }
