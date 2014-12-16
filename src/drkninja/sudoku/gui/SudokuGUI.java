@@ -242,7 +242,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         GameMenu.setText("Game");
 
         NewGameMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        NewGameMI.setText("New game");
+        NewGameMI.setMnemonic('G');
+        NewGameMI.setText("New Game");
         NewGameMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewGameMIActionPerformed(evt);
@@ -251,6 +252,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         GameMenu.add(NewGameMI);
 
         ResetMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        ResetMI.setMnemonic('R');
         ResetMI.setText("Reset");
         ResetMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,6 +263,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         GameMenu.add(jSeparator2);
 
         CheckMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, java.awt.event.InputEvent.CTRL_MASK));
+        CheckMI.setMnemonic('C');
         CheckMI.setText("Check");
         CheckMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +273,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         GameMenu.add(CheckMI);
 
         ExitMI.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        ExitMI.setMnemonic('X');
         ExitMI.setText("Exit");
         ExitMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,6 +287,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         HelpMenu.setMnemonic('h');
         HelpMenu.setText("Help");
 
+        RuleMI.setMnemonic('R');
         RuleMI.setText("Rules");
         RuleMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +297,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         HelpMenu.add(RuleMI);
         HelpMenu.add(jSeparator1);
 
+        AboutMI.setMnemonic('A');
         AboutMI.setText("About");
         AboutMI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -546,6 +552,7 @@ public class SudokuGUI extends javax.swing.JFrame {
             HintBox[i].setFocusable(x);
             SelectedNumber[i].setFocusable(x);
         }
+		CheckBN.setFocusable(x);
     }
     
     /**

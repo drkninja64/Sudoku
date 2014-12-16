@@ -7,7 +7,6 @@ package russell.sudoku.gui;
 
 import drkninja.sudoku.gui.SudokuGUI;
 import drkninja.sudoku.main.SudoMain;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import russell.sudoku.util.Reference;
 
@@ -23,8 +22,6 @@ public class SetDifficulty extends javax.swing.JFrame {
 	public SetDifficulty() {
 		initComponents();
 		RockButton.requestFocus();
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/russell/sudoku/res/QuestionIcon.png")));
-		setVisible(true);
 	}
 
 	/**
@@ -45,8 +42,11 @@ public class SetDifficulty extends javax.swing.JFrame {
         RockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Difficulty");
+        setAlwaysOnTop(true);
         setName("SetDifficulty"); // NOI18N
         setResizable(false);
+        setType(java.awt.Window.Type.UTILITY);
 
         InfoText.setText("Choose Difficulty Setting:");
 

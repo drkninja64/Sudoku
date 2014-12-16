@@ -17,7 +17,8 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="New game"/>
+                <Property name="mnemonic" type="int" value="71"/>
+                <Property name="text" type="java.lang.String" value="New Game"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewGameMIActionPerformed"/>
@@ -28,6 +29,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+R"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="82"/>
                 <Property name="text" type="java.lang.String" value="Reset"/>
               </Properties>
               <Events>
@@ -41,6 +43,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+ENTER"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="67"/>
                 <Property name="text" type="java.lang.String" value="Check"/>
               </Properties>
               <Events>
@@ -52,6 +55,7 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F4"/>
                 </Property>
+                <Property name="mnemonic" type="int" value="88"/>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -68,6 +72,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="RuleMI">
               <Properties>
+                <Property name="mnemonic" type="int" value="82"/>
                 <Property name="text" type="java.lang.String" value="Rules"/>
               </Properties>
               <Events>
@@ -78,6 +83,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="AboutMI">
               <Properties>
+                <Property name="mnemonic" type="int" value="65"/>
                 <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
               <Events>

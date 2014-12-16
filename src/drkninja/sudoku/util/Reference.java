@@ -6,17 +6,12 @@
 package drkninja.sudoku.util;
 
 import java.awt.Font;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
 /**
  *
  * @author Admin
  */
 public class Reference {
-    public static final String TITLE = "Sudoku";
     public static final String VERSION = "v1.0.2";
     public static final String INITIAL_TEXT = " ";
     public static final String BGI_PATH = "/drkninja/sudoku/res/Sudoku.png";
