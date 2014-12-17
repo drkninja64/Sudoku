@@ -6,8 +6,9 @@
 package drkninja.sudoku.gui;
 
 import drkninja.sudoku.src.SudoPanel;
-import static drkninja.sudoku.util.Reference.BGI_PATH;
-import static drkninja.sudoku.util.Reference.INITIAL_TEXT;
+import drkninja.sudoku.util.ReferenceD;
+import static drkninja.sudoku.util.ReferenceD.BGI_PATH;
+import static drkninja.sudoku.util.ReferenceD.INITIAL_TEXT;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -15,7 +16,6 @@ import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import russell.sudoku.gui.SetDifficulty;
 import russell.sudoku.src.*;
 import russell.sudoku.util.Utility;
 
@@ -90,6 +90,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Sudoku");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -342,6 +343,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         //JOptionPane.showMessageDialog(null, evt.getKeyChar());
         setNumber(evt.getKeyChar());
+        resetHints();
     }//GEN-LAST:event_formKeyPressed
 
     private void CheckMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckMIActionPerformed
@@ -368,12 +370,12 @@ public class SudokuGUI extends javax.swing.JFrame {
 
     private void RuleMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RuleMIActionPerformed
         // TODO add your handling code here:
-		Help.rules();
+		Help.rules(this);
     }//GEN-LAST:event_RuleMIActionPerformed
 
     private void AboutMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutMIActionPerformed
         // TODO add your handling code here:
-		Help.about();
+		Help.about(this);
     }//GEN-LAST:event_AboutMIActionPerformed
 
     private void CheckBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckBNActionPerformed
@@ -387,8 +389,8 @@ public class SudokuGUI extends javax.swing.JFrame {
         setupButtons();
         setBGI();
         Choice_None.setSelected(true);
-	SudoGen.newGame();
-	selectDefault();
+		SudoGen.newGame();
+		selectDefault();
         setValues();
         setFocuser(false);
         requestFocus();
@@ -526,12 +528,13 @@ public class SudokuGUI extends javax.swing.JFrame {
      */
     private void selectDefault() {
 		for (int i = 0; i < 9; i++) {
-			if (!Block[0][i].isFixed()) {
-				SELECTED_PANEL = Block[0][i];
-				break;
+			for (int j = 0; j < 9; j++) {
+				if (!Block[i][j].isFixed()) {
+					(SELECTED_PANEL = Block[i][j]).select();
+					return;
+				}
 			}
 		}
-        SELECTED_PANEL.select();
     }
 
     /**
@@ -564,6 +567,14 @@ public class SudokuGUI extends javax.swing.JFrame {
         }
     }
     
+    void resetHints(){
+        int i;
+        HintBox[0].setSelected(true);
+        for(i=1; i<10; i++){
+            HintBox[i].setSelected(false);
+        }
+    }
+    
     /**
      * sets hint boxes according to clicked
      * @param HB Clicked Box
@@ -573,6 +584,14 @@ public class SudokuGUI extends javax.swing.JFrame {
         
         for(sel=0; sel<10; sel++){
             if(HB.equals(HintBox[sel])) break;
+        }
+        
+        if(!HintBox[sel].isSelected()){
+            for(i=0; i<10; i++){
+                if(HintBox[i].isSelected()){
+                    setNumber((char)(i+48));
+                }
+            }
         }
         
 	//If none is selected, all hints are deselected
@@ -684,8 +703,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     }
 
     private void setCustIcon() {
-        //setIconImages(new java.util.List);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/drkninja/sudoku/res/SudoIcon40.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource(ReferenceD.ICON_PATH)));
     }
 
 }

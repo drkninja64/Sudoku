@@ -5,8 +5,18 @@
 
 package russell.sudoku.src;
 
-import drkninja.sudoku.util.Reference;
+import drkninja.sudoku.util.ReferenceD;
+import java.awt.Component;
+import java.awt.Desktop;
+import java.awt.Font;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
 
 /**
  *
@@ -14,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class Help {
 
-	public static void rules() {
+	public static void rules(Component Caller) {
 		String Title = "How to Sudoku?";
 		String Message[] = {
 			"Enter the numbers from 1 to 9 in such a way that no row, column",
@@ -41,22 +51,44 @@ public class Help {
 			" ",
 			"(Pardon the alignment)"
 		};
-		JOptionPane.showMessageDialog(null, Message, Title, JOptionPane.QUESTION_MESSAGE);
+		JOptionPane.showMessageDialog(Caller, Message, Title, JOptionPane.QUESTION_MESSAGE);
 	}
 
-	public static void about() {
-		String Title = "Sudoku " + Reference.VERSION;
-		String Message[] = {
-			"WARNING !!",
-			"This program is brought to you by Tuber Awesome.",
-			" ",
-			"Tuber Awesome includes:",
-			"> Sajag Acharya",
-			"> Russell Subedi",
-			" ",
-			"Send us feedback at tuber.awesome@gmail.com",
-			"Visit our facebook page: http://www.facebook.com/tuber.awesome"
-		};
-		JOptionPane.showMessageDialog(null, Message, Title, JOptionPane.WARNING_MESSAGE);
+	public static void about(Component Caller) {
+		String Title = "Sudoku " + ReferenceD.VERSION;
+		Font JOPFont = new JOptionPane().getFont();
+		String Message =
+			"<html><body style=\"font-family:" + JOPFont.getFamily() + ";font-size:" + JOPFont.getSize() + "pt;\"/>" +
+			"WARNING !!<br/>" +
+			"This program is brought to you by Tuber Awesome.<br/><br/>" +
+			"Tuber Awesome includes:<br/>" +
+			"> Sajag Acharya<br/>" +
+			"> Russell Subedi<br/><br/>" +
+			"Send us feedback at " + ReferenceD.LINK_EM + "<br/>" +
+			"Visit " + ReferenceD.LINK_FB + "." +
+			"</body></html>"
+		;
+
+		JEditorPane Potato = new JEditorPane("text/html", Message + ReferenceD.LINK_FB);
+		Potato.setEditable(false);
+		Potato.setBackground(new JLabel().getBackground());
+		Potato.setSelectionColor(Potato.getBackground());
+		Potato.setSelectedTextColor(Potato.getCaretColor());
+
+		Potato.addHyperlinkListener(new HyperlinkListener() {
+			@Override
+			public void hyperlinkUpdate(HyperlinkEvent he) {
+				if (he.getEventType().equals(HyperlinkEvent.EventType.ACTIVATED)) {
+					String URL = he.getURL().toString();
+					try {
+						Desktop.getDesktop().browse(new URI(URL));
+					} catch (IOException | URISyntaxException ex) {
+						JOptionPane.showMessageDialog(null, "Couldn't open the browser. Please go to " + URL + " manually.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+
+		JOptionPane.showMessageDialog(Caller, Potato, Title, JOptionPane.WARNING_MESSAGE);
 	}
 }

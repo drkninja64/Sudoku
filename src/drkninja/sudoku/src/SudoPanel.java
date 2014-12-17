@@ -8,8 +8,8 @@ package drkninja.sudoku.src;
 
 
 import drkninja.sudoku.gui.SudokuGUI;
-import static drkninja.sudoku.util.Reference.NORMAL_FONT;
-import static drkninja.sudoku.util.Reference.SELECTED_FONT;
+import static drkninja.sudoku.util.ReferenceD.NORMAL_FONT;
+import static drkninja.sudoku.util.ReferenceD.SELECTED_FONT;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;

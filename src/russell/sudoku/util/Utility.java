@@ -19,14 +19,8 @@ public class Utility {
 	public static void setSystemLookAndFeel() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (ClassNotFoundException ex) {
-			JOptionPane.showMessageDialog(null, "Couldn't find SystemLookAndFeel class.\nUsing MetalLookAndFeel instead.", "LookAndFeel Error!", JOptionPane.ERROR_MESSAGE);
-		} catch (IllegalAccessException ex) {
-			JOptionPane.showMessageDialog(null, "Couldn't access SystemLookAndFeel class.\nUsing MetalLookAndFeel instead.", "LookAndFeel Error!", JOptionPane.ERROR_MESSAGE);
-		} catch (InstantiationException ex) {
-			JOptionPane.showMessageDialog(null, "Couldn't instantiate SystemLookAndFeel.\nUsing MetalLookAndFeel instead.", "LookAndFeel Error!", JOptionPane.ERROR_MESSAGE);
-		} catch (UnsupportedLookAndFeelException ex) {
-			JOptionPane.showMessageDialog(null, "SystemLookAndFeel not supported.\nUsing MetalLookAndFeel instead.", "LookAndFeel Error!", JOptionPane.ERROR_MESSAGE);
+		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
+			JOptionPane.showMessageDialog(null, "Couldn't use SystemLookAndFeel. Using MetalLookAndFeel instead.", "LookAndFeel Error!", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -39,4 +33,5 @@ public class Utility {
 			System.exit(0);
 		}
 	}
+        
 }

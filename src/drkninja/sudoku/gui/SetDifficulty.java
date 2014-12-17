@@ -3,9 +3,8 @@
  * Russell made this!!
  */
 
-package russell.sudoku.gui;
+package drkninja.sudoku.gui;
 
-import drkninja.sudoku.gui.SudokuGUI;
 import drkninja.sudoku.main.SudoMain;
 import javax.swing.JOptionPane;
 import russell.sudoku.util.Reference;
@@ -22,6 +21,7 @@ public class SetDifficulty extends javax.swing.JFrame {
 	public SetDifficulty() {
 		initComponents();
 		RockButton.requestFocus();
+		setVisible(true);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class SetDifficulty extends javax.swing.JFrame {
         FreeRadio = new javax.swing.JRadioButton();
         RockButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Difficulty");
         setAlwaysOnTop(true);
         setName("SetDifficulty"); // NOI18N
@@ -108,7 +108,7 @@ public class SetDifficulty extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RockButtonActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
 		if (EasyRadio.isSelected()) {
 			Reference.Difficulty = Reference.EASY_D;
 		} else if (MediumRadio.isSelected()) {
@@ -134,4 +134,6 @@ public class SetDifficulty extends javax.swing.JFrame {
     private javax.swing.JRadioButton MediumRadio;
     private javax.swing.JButton RockButton;
     // End of variables declaration//GEN-END:variables
+
+	
 }

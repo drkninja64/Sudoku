@@ -5,7 +5,8 @@
 
 package drkninja.sudoku.main;
 
-import russell.sudoku.gui.SetDifficulty;
+import drkninja.sudoku.gui.MainMenu;
+import drkninja.sudoku.gui.SetDifficulty;
 import russell.sudoku.util.Utility;
 /**
  *
@@ -15,7 +16,7 @@ public class SudoMain {
     public static javax.swing.JFrame MainGUI;
     
     public static void main(String args[]){
-		Utility.setSystemLookAndFeel();
-		new SetDifficulty().setVisible(true);
+	Utility.setSystemLookAndFeel();
+	MainGUI = new MainMenu();
     }
 }
