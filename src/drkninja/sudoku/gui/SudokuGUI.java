@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import russell.sudoku.src.*;
+import russell.sudoku.util.Reference;
 import russell.sudoku.util.Utility;
 
 /**
@@ -77,6 +78,7 @@ public class SudokuGUI extends javax.swing.JFrame {
         Choice_9 = new javax.swing.JRadioButton();
         Box_None = new javax.swing.JCheckBox();
         CheckBN = new javax.swing.JButton();
+        FixBN = new javax.swing.JButton();
         MainMenuBar = new javax.swing.JMenuBar();
         GameMenu = new javax.swing.JMenu();
         NewGameMI = new javax.swing.JMenuItem();
@@ -240,6 +242,13 @@ public class SudokuGUI extends javax.swing.JFrame {
             }
         });
 
+        FixBN.setText("Fix");
+        FixBN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FixBNActionPerformed(evt);
+            }
+        });
+
         GameMenu.setMnemonic('G');
         GameMenu.setText("Game");
 
@@ -322,7 +331,8 @@ public class SudokuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(SelectionPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(CheckBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FixBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -334,7 +344,9 @@ public class SudokuGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(SelectionPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CheckBN)))
+                        .addComponent(CheckBN)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FixBN)))
                 .addContainerGap())
         );
 
@@ -383,6 +395,23 @@ public class SudokuGUI extends javax.swing.JFrame {
         checkAction();
     }//GEN-LAST:event_CheckBNActionPerformed
 
+    private void FixBNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FixBNActionPerformed
+        // TODO add your handling code here:
+		if (SELECTED_PANEL.ACTUAL_VALUE == 0) {
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
+					if (SudokuGUI.Block[i][j].ACTUAL_VALUE != 0) {
+						SudokuGUI.Block[i][j].fix(SudokuGUI.Block[i][j].ACTUAL_VALUE);
+					}
+				}
+			}
+			FixBN.setVisible(false);
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Please select an empty cell first.", "Error!", JOptionPane.ERROR_MESSAGE);
+		}
+    }//GEN-LAST:event_FixBNActionPerformed
+
 	private void init(){
 		setLocationRelativeTo(null);
 		setupHintBox();
@@ -395,6 +424,10 @@ public class SudokuGUI extends javax.swing.JFrame {
 		setValues();
 		setFocuser(false);
 		requestFocus();
+
+		if (Reference.Difficulty != 0) {
+			FixBN.setVisible(false);
+		}
 	}
 
 	/**
@@ -511,6 +544,7 @@ public class SudokuGUI extends javax.swing.JFrame {
     private static javax.swing.JRadioButton Choice_9;
     private static javax.swing.JRadioButton Choice_None;
     private javax.swing.JMenuItem ExitMI;
+    public javax.swing.JButton FixBN;
     private javax.swing.JMenu GameMenu;
     private javax.swing.JMenu HelpMenu;
     private javax.swing.JMenuBar MainMenuBar;
@@ -557,6 +591,7 @@ public class SudokuGUI extends javax.swing.JFrame {
 			SelectedNumber[i].setFocusable(x);
 		}
 		CheckBN.setFocusable(x);
+		FixBN.setFocusable(x);
 	}
 
 	/**

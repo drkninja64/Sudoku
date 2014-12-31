@@ -134,6 +134,4 @@ public class SetDifficulty extends javax.swing.JFrame {
     private javax.swing.JRadioButton MediumRadio;
     private javax.swing.JButton RockButton;
     // End of variables declaration//GEN-END:variables
-
-	
 }

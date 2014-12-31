@@ -12,7 +12,8 @@ import java.awt.Font;
  * @author Admin
  */
 public class ReferenceD {
-    public static final String VERSION = "v1.0.3";
+    public static final String VERSION = "v1.0.4 (New Year Release)";
+	public static final String RELEASE_DATE = "January 1, 2015";
     public static final String INITIAL_TEXT = " ";
     public static final String BGI_PATH = "/drkninja/sudoku/res/Sudoku.png";
     public static final String ICON_PATH = "/drkninja/sudoku/res/SudoIcon16.png";

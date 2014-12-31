@@ -131,6 +131,7 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="SelectionPanel" max="32767" attributes="0"/>
                   <Component id="CheckBN" max="32767" attributes="0"/>
+                  <Component id="FixBN" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -146,6 +147,8 @@
                       <Component id="SelectionPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CheckBN" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="FixBN" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -467,6 +470,17 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBNActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="FixBN">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fix"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FixBNActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
