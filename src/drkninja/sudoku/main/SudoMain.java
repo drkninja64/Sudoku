@@ -6,7 +6,6 @@
 package drkninja.sudoku.main;
 
 import drkninja.sudoku.gui.MainMenu;
-import drkninja.sudoku.gui.SetDifficulty;
 import russell.sudoku.util.Utility;
 /**
  *

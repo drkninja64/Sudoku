@@ -1,4 +1,4 @@
 - sound effects
 - load/save option
 - sudo gen
-- 
+- tips on how to play
